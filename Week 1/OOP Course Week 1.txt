@@ -1,0 +1,260 @@
+Object Oriented Programming in Python
+Week 1
+25 comments
+Welcome to Object-Oriented Programming in Python. You may have heard of object-oriented programming (OOP) but be unsure exactly what it is. Maybe you have attempted to read guides or books but got lost in the jargon. You may be more familiar with procedural programming and want to expand your knowledge.
+Object-oriented programming is integral to many programming languages and is simply a different style of programming. This course is aimed at learners who have some basic experience with Python but have never programmed in the object-oriented style.
+By the end of the course you will understand the difference between procedural and object-oriented programming styles.
+During this course, you will:
+•	Learn the fundamentals of object-oriented programming (OOP)
+•	Explore the terms object, class, method, attribute, and instantiation
+•	Use objects and classes in Python to create your own programs
+•	Create your own objects and classes to build a text-based adventure game
+•	Extend existing classes
+•	Learn about abstraction, inheritance, and polymorphism
+This course is very practical, giving you a chance to apply new knowledge by completing a range of programming tasks. Throughout, there are opportunities to share your thoughts and progress and to learn from each other; please use these to ask questions and help others.
+
+
+
+What is an object?
+48 comments
+Objects are used to model things in code. An object can represent a physical item, such as a display screen; or a digital unit, such as a bank account or an enemy in a computer game.
+An object is a group of data and functions. Such functions are called methods; they are custom functions specifically designed to interact with an object. And because you can define your own objects, you can represent anything you like using an object.
+Where may you have seen objects before?
+In Python, everything is an object. String and integer variables, lists, and even functions are individual objects. While you may not have created your own objects, or been aware of them, you will have used objects in your Python programs.
+This code would create a list of numbers:
+numbers = [1, 2, 3]
+numbers is a list object that contains data and methods.
+It contains the data 1, 2, 3 and methods which allow you to manipulate this data.
+You could use the append method to add a new item to the end of the list, e.g.
+numbers.append(4)
+The data within the numbers object would be modified to contain the new number, i.e. 1, 2, 3, 4.
+You can view all the list object methods in the Python documentation.
+Real-world objects
+I’d like you to think about an example of an LED wired up to a Raspberry Pi computer. Don’t worry if you have never wired up an LED or done any other physical computing before; the important thing here is the code.
+ 
+On the left of the diagram is Raspberry Pi’s GPIO pins. GPIO pins allow you to control components that are connected to them. The LED is connected to pin 17.
+To make the LED switch on, you would use the following Python code:
+from gpiozero import LED
+red = LED(17)			
+red.on()
+To interact with the LED, an LED object is created that represents the physical LED in code. The object is given the name red so that you can refer to that specific LED object.
+red = LED(17)		
+If another LED were wired up to pin 21, you could create another object with a different name to represent it:
+green = LED(21)
+Why would you want to make an object?
+In the example above, the code also used a method to control the LED, in this case to turn it on.
+red.on()
+One of the benefits of using object-oriented programming is that unnecessary details can be abstracted away in the implementation of the methods. You do not need to know the specifics of exactly how a method works to be able to use it; you simply need to know that when you call the method, the desired outcome will be achieved.
+You don’t need to know anything about the on() method, apart from the fact that using it on the LED object will make the physical LED light up. Similarly you didn’t need to know how the append() method worked when you added an item to the end of the numbers list.
+What methods have you used in Python before? You may have used a method that looked like object.method(). Share any methods and their objects that you’ve come across before in the comments section.
+What you will need
+5 comments
+To complete the activities within this course, you will need to be able to create and run Python 3 programs.
+ 
+All the resources required to complete this course can be used for free.
+Python
+To create Python programs, you need a text editor to write your code and a Python interpreter. You write the code into the text editor and the interpreter executes your code on the computer.
+An editor, interpreter, and other useful tools (e.g. a file browser) are often bundled together into an Integrated Development Environment (IDE). IDEs make creating programs much easier.
+If you require advice about the options for using Python or instructions for installing Python, please review our guidance on Applications for creating Python programs.
+All but one activity in the course can be completed using an Online IDE. One activity in week 1 will be using a GUI (Graphical User Interface) to explore objects and you will need either a dedicated Python editor or a full Python installation.
+What we use
+During the course I will be using the Python editor Mu (Alpha), as the simple interface helps when presenting.
+Note: You do not have to use the same as me.
+Getting ready to start can often be the hardest task. Take some time now to find a solution that works for you. Make sure that you have Python ready to go before you continue with this course.
+WATCH the turtle race video
+
+Turtle race
+89 comments
+In this step you will be writing a program using objects, using Python’s turtle module to create a turtle race.
+ 
+1.	Create a new Python program and save it as turtlerace.py.
+2.	You need to ask Python to import the Turtle class, which is like a blueprint for making a turtle. You will look at what a class is in more detail later on in the course; for now, use this code:
+3.	from turtle import Turtle
+Tip: It is important you don’t name your file the same as an import, e.g. turtle.py, otherwise the code will try to import itself and will not work.
+4.	Create an instance of a Turtle object. I’m going to name my Turtle object ‘laura’. You can give your turtle whatever name you like.
+5.	laura = Turtle()
+As the name of the Turtle object is a variable name, it must start with a letter and it cannot contain any spaces. You are creating a variable in exactly the same way as you usually do, except that the data type of the variable is not an integer or a string, but a Turtle!
+Did you notice that a capital ‘T’ is used when referring to the Turtle class? This is because class names usually start with a capital so that they are easily distinguishable from variable names.
+Each Turtle object is a different instance and will need a different name, so that when you give instructions, you can be specific about which object you are giving the instructions to.
+6.	Tell your Turtle object what it should look like. Inside the object are attributes, which are pieces of data we can define. The Turtle object has attributes for colour and shape; you can use the color and shape methods to customise those attributes:
+7.	laura.color('red')
+8.	laura.shape('turtle')
+You can also tell the Turtle object what to do by calling other methods.
+9.	Use the code below to instruct the turtle to stop drawing with penup(), then to move to a location with goto(), and finally to get ready to draw a line with pendown().
+10.	laura.penup()
+11.	laura.goto(-160, 100)
+12.	laura.pendown()
+13.	Run your program. What happens?
+ 
+Create three more instances of a Turtle object, each with a different name.
+rik = Turtle()
+lauren = Turtle()
+carrieanne = Turtle()
+If you send all the turtles to the same starting point, they will all be on top of each other.
+14.	Tell one new turtle to goto(-160, 70), one to goto(-160, 40), and one to goto(-160, 10), for example:
+15.	rik.penup()
+16.	rik.goto(-160, 70)
+17.	rik.pendown()
+You can also set a different colour for each turtle if you like, using the .color method as before.
+18.	Save and run your code to check that each of your turtles positions itself correctly, ready to start the race!
+You now need to make the Turtle objects race. Each turtle will move forward by a random number of pixels.
+19.	After the code to create your four Turtle objects, add this code, replacing the names (laura, rik, etc.) with the names of your own turtle objects:
+20.	from random import randint
+21.	
+22.	for movement in range(100):
+23.	    laura.forward(randint(1,5))
+24.	    rik.forward(randint(1,5))
+25.	    lauren.forward(randint(1,5))
+26.	    carrieanne.forward(randint(1,5))
+Just as when you used methods to tell the turtle to penup(), pendown(), and goto(), with this code you are using the forward() method to ask it to move forward a random distance between one and five units.
+Note: The randint function from the random module generates random integers.
+27.	Save and run your code and see which turtle wins! The result should be different each time you run the code.
+Depending on your IDE, you might find that your code executes and then closes the window before you have had a chance to see the output. You can add this line to the end of your files to prevent this from happening:
+~~~python
+input("Press Enter to close")
+~~~
+Experiment with the turtle race program, change some attributes, and perhaps create some new turtle objects.
+Copy your program onto Pastebin.com, create a paste, and share the link in the comments.
+There is also a Code Club version of the turtle race project that you can try yourself, or if you are an educator, try with your learners.
+Comparing functions to methods
+14 comments
+In the previous activity, you used the randint function to get a random number when moving the turtle objects forward. Functions allow you to give a name to a set of instructions. You can pass data to a function, and, optionally, you can have it return some data as a result.
+Have a look at this example. The following function will tell a knock knock joke if you provide the introduction and the punchline:
+def tell(intro, punchline):
+    print("Knock knock")
+    print("Who's there")
+    print(intro)
+    print(intro + " who")
+    print(punchline)
+You could call this function by writing this line of code passing the intro and punchline of the joke:
+tell("Atch", "Sounds like you've got a cold!")
+When you programmed the turtles, you used methods such as goto(), which are very similar to functions. The difference is that a method is called on an object, which means that as well as being able to receive data from outside, a method can use all of the data stored inside the object as well.
+Here’s what the same joke might look like if a Joke object had been defined with a tell() method.
+my_joke = Joke("Atch", "Sounds like you've got a cold!")
+my_joke.tell()
+If you type in this code and try to run it, you will receive an error:
+NameError: name 'Joke' is not defined
+This is because you have to first tell Python how to create a Joke object. To do this, Python needs a blueprint for the object. The blueprint you create for an object is called a class. You will create your own classes in week two of the course.
+WATCH CEMENT YOUR KNOWLEDGE OF OBJECTS VIDEO
+
+Cement your knowledge of objects
+8 comments
+Note: There is no speech on the video above, and all of the steps in the video are described below.
+So far, you have learnt that an object has attributes (or pieces of data) stored inside it, and methods we can call on it to give it instructions.
+As I mentioned briefly earlier, a class is like a blueprint for creating objects. I like to think of a class as being similar to a cookie cutter: it is a template for all the cookie objects you make.
+ 
+You can make as many instances of cookie objects as you want, and they will all start off from the same template.
+ 
+ 
+If you like, you can customise each instance of a cookie object, perhaps by adding some icing or some sprinkles. But whenever you make cookies, you use the same cookie cutter template.
+ 
+Imagine you have created a Cookie class in a module called baking which accepts a list of toppings.
+You could create some cookies using the following code.
+from baking import Cookie
+
+sprinkled = Cookie(["sprinkles"])
+iced_chocolate = Cookie(["icing", "chocolate chips"])
+Think back to the turtle race program that you wrote. You created four instances of turtle objects from the Turtle class and customised the attributes of each turtle object by changing its colour and position. You used the forward method to move each turtle object, which drew a line across the screen based on that turtle’s colour attribute.
+Next steps
+Over the next few steps you’ll use some different objects and combine them into a single program.
+WATCH DRAWING SHAPES TO APPLY YOUR UNDERSTANDING VIDEO
+
+Drawing shapes to apply your understanding of methods and attributes
+51 comments
+You are now going to draw some shapes using objects.
+Note: Unfortunately, you won’t be able to complete this activity if you are using an online IDE such as Trinket or Repl.it.
+1.	Copy this shapes code, paste it into a new Python file, and save it as shapes.py. (Shapes code is in the Files Section)
+The script contains shape classes that I have written for you; they are the blueprints for Paper and Triangle, Oval, and Rectangle shapes.
+2.	In the same folder in which you just saved the shapes.py file, create a new Python file and save it as my_drawing.py. This will be where you create your masterpiece!
+3.	At the top of your file, tell Python you would like to be able to use the Paper, Triangle, Oval, and Rectangle classes from the shapes file:
+4.	from shapes import Paper, Triangle, Rectangle, Oval
+5.	To have something to draw on, you will need to create an instance of a Paper object.
+6.	paper = Paper()
+7.	Create your first shape by creating an instance of a Rectangle object.
+8.	rect1 = Rectangle()
+9.	To set the attributes of the rectangle object, you can use some special methods called setters. The name ‘setters’ comes from the fact that the purpose of these methods is to set values.
+10.	Use the setter methods to give your rectangle object a width, height, and colour.
+11.	rect1.set_width(200)
+12.	rect1.set_height(100)
+13.	rect1.set_color("blue")
+14.	You can now use the draw method to draw the rectangle onto the paper.
+15.	rect1.draw()
+16.	Finally, you should use the display method of the Paper object to show your creation on the screen.
+17.	paper.display()
+18.	Save and run your code. You should see a blue rectangle appear.
+ 
+The blue rectangle is an instance of the Rectangle class; it was made with the blueprint common to all Rectangles. You used setter methods to customise the attributes of this instance of the object before drawing it onto the Paper object.
+The attributes of the Rectangle object, such as its size and colour, define how it will be drawn on the screen.
+The methods allow you to interact with the object, such as changing the attributes using setters or instructing it to be drawn on the screen.
+Creating a second Rectangle
+Create another instance of the class Rectangle. This time, set the attributes of the rectangle to be:
+•	width = 50
+•	height = 150
+•	color = “yellow”
+Note: Put the code to create and draw your second Rectangle before the code to display the paper, for example:
+# put the code to create the 2nd Rectangle here
+
+paper.display()
+You will notice that the first rectangle will be drawn underneath the second one you drew.
+Controlling the position of the new rectangle
+Can you move the position of the new rectangle using the set_x() and set_y() methods to define the coordinates of the top left point of the rectangle? Drawing the new rectangle at x = 100 and y = 100 should move it out of the way.
+How did you approach solving this task? Did you make any mistakes or find anything difficult? Share your experiences in the comments.
+Drawing challenge
+62 comments
+You are now going to use the shapes classes to create a masterpiece of your own.
+Did you complete the task on the previous step and display two rectangles on your drawing? Here is an example solution, if you would like to review how it could be done.
+The documentation for the shapes classes can be found here. By reading the class documentation, you can work out what attributes and methods are available to you for each object.
+In this snippet from the documentation, you can see that the Oval class has a method randomize(), which will randomly choose a value for each of the attributes.
+class Oval(Shape)
+   	Oval(width=50, height=50, x=None, y=None, color='black')
+
+    randomize(self, smallest=20, largest=200)
+        Randomly generates width, height, position and colour for a shape. You can specify
+        the smallest and largest random size that will be generated. If not specified, the
+        generated shape will default to a random size between 20 and 200.
+
+        Args:
+            smallest (int): The smallest the shape can be. Defaults to 20
+            largest (int): The largest the shape can be. Defaults to 200.
+Your task
+Explore the shapes class documentation. Use what you find out from this about other classes and methods to:
+1.	Create an Oval and call the randomize() method on it before calling the draw() method to display it.
+2.	Create a drawing using rectangles, ovals, and triangles.
+Tip: The Triangle class is a little different to Rectangle and Oval classes, because to create a triangle you need to specify the coordinates of the three points that will be the three corners of the triangle. For example, this code creates a right-angled triangle with corners at (5,5), (100,5), and (100,200):
+tri = Triangle(5, 5, 100, 5, 100, 200)
+Share your creations by uploading your code to Pastebin.com and copying the URL into the comments section.
+Creating and using objects
+•	Intro
+•	Question1Correct
+•	Question2Correct
+•	Question3Correct
+Question 3
+I want to write a shape-drawing program to draw lots of rectangles on the screen. I start the program with the following line of code:
+rect = Rectangle()
+Which of the following lines of code could I add to the program to create another instance of the class Rectangle?
+Rectangle() * 2
+rect2 = Rectangle()
+rect = Rectangle2()
+rect = rect + Rectangle()
+
+End of week one
+16 comments
+Well done for completing the first week of the course.
+This week, you learnt:
+•	What objects, classes, attributes, and methods are
+•	How to use objects in your programs
+•	That objects come from a class, which is like a blueprint
+•	That the attributes of an object can be customised
+•	That an object’s methods allow us to interact with it
+In the previous step, you also completed a quiz in which your knowledge of basic object-oriented programming concepts was tested. If you have any questions about the quiz, please post them in the comments section.
+Next week, you will begin to create an adventure game, and learn how to write your own class in order to create custom objects.
+Week one glossary
+Attribute: a named piece of data stored within an object
+Class: a blueprint for making an object
+Instance: a specific example of an object
+Method: a function called upon an object allowing interaction with that object
+Object: groups together data and functions to model something in code. Examples could include a physical item such as an LED, or a digital unit such as a bank account or an enemy in a video game
+Object-oriented programming: a different style of programming that brings function and data together
+
+This text/image/video was created by the Raspberry Pi Foundation and is licensed under the Open Government Licence v3.0..
+
