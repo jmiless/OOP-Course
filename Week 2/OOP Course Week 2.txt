@@ -1,0 +1,336 @@
+Object Oriented Programming in Python
+Week 2
+
+Welcome to week two
+7 comments
+Last week, you experimented with creating objects, setting attributes, and calling methods. You started your object-oriented programming (OOP) journey by using classes that were already written.
+This week, you will:
+•	Create your own classes
+•	Learn how to use attributes and methods
+•	Create custom objects
+•	Use getter and setter methods
+When I was designing this course at the Raspberry Pi Foundation, we discussed our experiences of learning about object-oriented programming. We agreed that the way we had learnt best was by using objects to write a program that had a visible application, rather than by simply studying the theory of OOP. Therefore, I wanted the result of this course to be a program you can use and interact with, in order to experience how objects make it work.
+This course is very practical, giving you a chance to apply new knowledge by completing a range of programming tasks to create a text-based role-playing game. 
+Explore a text adventure game
+28 comments
+In this step, you will play a text-based adventure game and explore how you could use methods and attributes to interact with a room in the game.
+A text-based adventure game is an interactive invented world described in text. It can be filled with different rooms, items, obstacles, or anything your imagination allows. The player interacts with the world by typing commands, and the game describes the result of the player’s commands.
+Test the game you will make this week by running the program in Trinket.
+You can move around the game by using the commands north, south, east, and west.
+Each time you move, you enter a new room and a description is shown.
+An example of a room in your game might be a dining hall, described like this:
+The dining hall
+-------------------
+A large room with ornate golden decorations on every wall
+The kitchen is north
+The ballroom is west
+>
+In the previous week, you looked at attributes and methods. Attributes are the pieces of information stored within an object, just like a collection of variables. Methods are the ways in which you interact with an object; you used an on() method to light up an LED in our example in week one.
+In your adventure game, what methods do you think might be useful for interacting with a room? As an example, you need to be able to display the name of a room when the player enters it, so you might write a get_room() method.
+What attributes do you think a room might have? For example, every room should have a name (for example ‘kitchen’ or ‘dining hall’), so you will add an attribute called name.
+Think about the attributes and methods that rooms might have, and share your ideas by leaving a comment. Remember — there is no one correct answer!
+
+Creating your own class
+28 comments
+WATCH VIDEO CREATING YOUR OWN CLASS
+In this step you are going to create your own class, which will be a blueprint for the rooms in your text-based adventure game.
+1.	Open a new Python file.
+2.	Save it as room.py.
+3.	Create a class and give it a name like this:
+class Room():
+Your class is called Room because it will represent the concept of a room. I have deliberately given the class a name starting with a capital letter, as this helps to distinguish between class names and variables.
+Creating a constructor and defining attributes
+You are now going to add a constructor to your class. This is a special method to tell Python how to create an object of this class, and it is always called __init__ with a double underscore on each side of ‘init’.
+Take extra care to get this special method name right, or your constructor will not work!
+Complete the following instructions in your room.py file:
+1.	Move to the next empty line.
+2.	If your editor has not done this for you, indent your cursor by pressing the tab key to tell Python that the code you are about to write is part of the Room class.
+3.	Add the code below to define the constructor method:
+def __init__(self):
+Here, ‘init’ stands for ‘initialise’, as a constructor initalises (that is, creates) an object.
+Now you are going to add attributes for your room to the constructor. The room should have a name — for example, it might be a kitchen, a bathroom, or a cellar. You are also going to store a description of the room to provide some atmosphere — the cellar could be dark and dusty, for instance.
+Add these attributes to your constructor method like this:
+def __init__(self):
+    self.name = None
+    self.description = None
+Always refer to attributes within the object in the format self.name_of_attribute to tell Python that you are referring to a piece of data within the object; self means ‘this object’. Setting the attribute values to None means that they will start off with no value.
+Sometimes you will want to allow people to set the values of these parameters when they use your class to create an object.
+Add a parameter to the constructor called room_name by altering the existing code like this:
+def __init__(self, room_name):
+This means that when you create an object, you must provide a room name.
+Change the code inside the constructor to tell Python to set the value of the attribute self.name to the room_name provided, by altering the existing code like this:
+def __init__(self, room_name):
+    self.name = room_name
+Your Room class should now look like this:
+class Room():
+    def __init__(self, room_name):
+        self.name = room_name
+        self.description = None
+Instantiating your own object
+Test your code out by creating an object of the Room class you have written.
+1.	Create a new Python file called main.py and save it in the same folder as the file room.py.
+2.	In the main.py file, add the following line of code:
+from room import Room
+This command looks for a file in the same folder called room.py, and looks inside that file for a class called Room (note the upper case R); this is the class you just wrote. The Room class is then made available for use inside the main.py file. (If you did not save your room code as room.py, this will not work; in this case, you will need to rename the file.)
+Now instantiate (create) a Room object by executing the code in your main.py file.
+ 
+Add the following code in the next empty line in your main.py file:
+kitchen = Room("kitchen")
+This stores the object in a variable called ‘kitchen’ so that you can refer to it later.
+When you save and run your program, nothing will happen. Your Room object is being created, but you can’t see it or interact with it, because you didn’t write any methods when you created the Room class. You will move onto this later in the course.
+Your Room class has two attributes: a name and a description. Can you think of any other attributes a room in our game might have? Why do you think that attribute would be useful? Share your thoughts in the comments section.
+Class & objects
+10 comments
+In the previous step, you created a class called Room and a constructor method with attributes. You also instantiated an object from the Room class. In this step, you are going to learn more about class and objects.
+You can think of class as being a blueprint or a design of a house; it contains details about the make-up of the house such as the doors, windows, floors, and roof. When the design is built, a house is created; in this analogy, the built house is the object. You can build many houses using the same design, and you can also create many objects from a class.
+An object is also called an instance of a class, and the process of creating this is instantiation.
+In the main part of your game, the line below creates a new Room object with an attribute name set to kitchen. Then the object is assigned to a variable called kitchen:
+kitchen = Room("kitchen")
+To fully understand how this works, you need to know how the ‘self’ parameter works in the constructor. The self parameter automatically receives a reference to the object invoking the method. By using self, a method can invoke the object and access the attributes and methods of that object. In the previous constructor method, the parameter self automatically receives a reference to a new Room object while the parameter name receives kitchen. The line below creates the attribute:
+self.name = room_name
+Ballroom and dining room objects
+Now you are going to create objects for the ballroom and dining room so that you have a total of three rooms in your game.
+1.	Open your main.py file.
+2.	Add the following line of code to create a ballroom:
+3.	ballroom = Room("ballroom")
+4.	Add another line of code to create a dining_hall room.
+
+WATCH VIDEO GETTERS AND SETTERS
+
+Getters and setters
+12 comments
+So that you are able to interact with the room object, you need to create some getters and setters. These are methods that get and set the values of the object’s attributes.
+For every method within a class, you first need to specify the self parameter — the object itself — followed by any data to pass in, just as you did with the constructor. You will need to add these methods inside the room.py file, after the constructor method.
+class Room():
+    def __init__(self, room_name):
+        self.name = room_name
+        self.description= None
+
+    # Add your code here (make sure it is indented)
+Here is a method to set the description of the room:
+def set_description(self, room_description):
+    self.description = room_description
+Here is a method to get the description of the room:
+def get_description(self):
+    return self.description
+Using getters and setters
+Use the set_description method you created earlier to give your kitchen object a description. Go back to your main.py file and add this line of code below the line where you instantiate the object:
+kitchen.set_description("A dank and dirty room buzzing with flies")
+Did you notice that the method you wrote had two arguments (self and room_description), but in the code above I only had to provide the room description? The self argument is always given first when you write a method, but when you use a method, you do not have to give this argument to it. This is because it is automatically passed to the method when you use Python.
+You can also use the get_description method you created earlier. Add this line at the bottom of your main.py file:
+kitchen.get_description()
+Save and run your program. You will probably be expecting to see the description of your kitchen room on the screen. However, when you run the program, you will not see anything.
+This is because your get_description() method returns the description, rather than printing it. This is useful if you want to do something else with the description, such as concatenate it with some other text, but if you want to display the description, you need to use the print command.
+Instead of amending the get_description() method, you will use a different approach. Go back to room.py and add an additional method called describe(), which will print out the object’s description when it is called.
+def describe(self):
+    print( self.description )
+In main.py, delete the kitchen.get.description() and add kitchen.describe() on the same line, then run it to see the description appear.
+Creating getters and setters
+Add a getter method called get_name and a setter method called set_name to your class, to allow someone to get and set the attribute name in the same way.
+You can see a solution for this at the end of the next step.
+Python properties
+You don’t strictly need getters and setters in Python, because you can access the attributes of the object directly (for example, you could just print( kitchen.description )). Including getters and setters in your class is good programming etiquette, because they are useful tools for ensuring that people are using your code in the way you expect, and for minimising the risk of unexpected errors.
+Python also has a more advanced way of specifying getters and setters for attributes using the @property decorator. While this is probably considered more pythonic, I have chosen not to cover this method until later in this course, to keep things simple and avoid teaching a syntax that is specific to Python.
+Linking rooms
+22 comments
+Linking rooms
+Your game needs to have lots of rooms, and so you need to add some attributes and methods to handle linking multiple room objects together.
+In order to do this, you’ll add another attribute to a Room object, containing a dictionary of all of the rooms that it is linked to. You may not have encountered a dictionary data structure before. Dictionaries are similar to lists, but allow you to give each element a name. Here is an example of a dictionary that stores the winners of various medals:
+winners = { "gold": "Alex", "silver": "Brian", "bronze": "Clare"}
+print( winners["gold"] )
+
+>>> Alex
+As you can see, you can ask the dictionary for a specific element by name. This will be useful in your adventure game, because you can ask for the room in a particular direction. For example, here is how you would refer to the room to the east:
+self.linked_rooms["east"]
+Go back to your Room class, locate the __init__ constructor, and add a new attribute called linked_rooms.
+def __init__(self, room_name):
+    ...
+    self.linked_rooms = {}
+The linked_rooms = {} code creates an empty dictionary; it’s empty because at the moment, the room isn’t linked to any other rooms.
+Next, you need to add a method so that you can link rooms together. Add this new method below the other methods:
+class Room():
+    ...
+    def describe(self):
+        print( self.description )
+
+    # Add link_room method here
+Add the link_room method:
+def link_room(self, room_to_link, direction):
+    self.linked_rooms[direction] = room_to_link
+This method takes three parameters: the object itself (which you can ignore when you use the method), the room object to link to, and the relative direction of this object.
+Here is a diagram of how the rooms will be laid out:
+ 
+Set up your rooms
+•	Go back to your main.py code
+•	Create the additional rooms shown in the diagram above
+•	Set descriptions for all of your room objects
+Link the rooms together
+The dining hall is to the south of the kitchen, so I am going to use the link_room method on the kitchen object in my main.py file, like this:
+kitchen.link_room(dining_hall, "south")
+from room import Room
+
+kitchen = Room("kitchen")
+kitchen.set_description("A dank and dirty room buzzing with flies")
+# you can remove this line now
+kitchen.describe() # remove
+
+dining_hall = Room("dining hall")
+dining_hall.set_description("A large room with ornate golden decorations on each wall")
+
+ballroom = Room("ballroom")
+ballroom.set_description("A vast room with a shiny wooden floor; huge candlesticks guard the entrance")
+
+# Add your link room code here
+See inside the dictionary
+If you would like to see what’s inside the dictionary, add this line of code inside the link_room method in room.py to display its contents:
+print( self.name + " linked rooms :" + repr(self.linked_rooms) )
+class Room():
+    ...
+
+    def link_room(self, room_to_link, direction):
+        self.linked_rooms[direction] = room_to_link
+        # Add the code here (make sure it is indented)
+Run the main.py code and you will see something similar to this, which shows that there is a Room object in the specified direction:
+Kitchen linked rooms :{'south': <room.Room object at 0x03A22770>}
+This code is not necessary for the game; I am just using it to show you how the dictionary gets built up. Once you have seen how it works, comment that line out by putting a # at its start.
+Your Room class should now look similar to this, with getter and setter methods for name, and methods to describe the room and link it to other rooms.
+class Room():
+    def __init__(self, room_name):
+        self.name = room_name
+        self.description = None
+        self.linked_rooms = {}
+
+    def set_description(self, room_description):
+        self.description = room_description
+
+    def get_description(self):
+        return self.description
+
+    def set_name(self, room_name):
+        self.name = room_name1
+
+    def get_name(self):
+        return self.name
+
+    def describe(self):
+        print( self.description )
+
+    def link_room(self, room_to_link, direction):
+        self.linked_rooms[direction] = room_to_link
+        # print( self.name + " linked rooms :" + repr(self.linked_rooms) )
+Create the links between your rooms
+Use the link_room method in main.py to link the rooms together in your game so that it matches the diagram above.
+Don’t forget that links go only one way:
+kitchen.link_room(dining_hall, "south")
+This code links from the kitchen to the dining hall. However, at the moment there is no link back from the dining hall to the kitchen, so the player will be stuck there forever!
+It is therefore important that there is a link in the opposite direction:
+dining_hall.link_room(kitchen, "north")
+The room you are linking from is the object you call the method on, and the room you are linking to is the object you pass into the method.
+Displaying linked rooms
+10 comments
+When entering a room in the game, the game displays a description of that room to the player, for example:
+The dining hall
+-------------------
+A large room with ornate golden decorations on every wall
+The kitchen is north
+The ballroom is west
+Next, you will add a new method to the Room class to report the room name and description and the directions of all the rooms connected to it.
+Go back to the Room class and add a new method that will display all the rooms linked to the current room object. Don’t forget to make sure the new method is indented, just like all the other methods.
+def get_details(self):
+    for direction in self.linked_rooms:
+        room = self.linked_rooms[direction]
+        print( "The " + room.get_name() + " is " + direction)
+This method loops through the dictionary self.linked_rooms and, for every defined direction, prints out that direction and the name of the room in that direction.
+Go back to the main.py file and, at the bottom of your script, call this method on the dining hall object, then run the code to see the two rooms linked to the dining hall.
+dining_hall.get_details()
+Name and description
+Add the code to the get_details() method so that it also prints out the name and description of the current room, as in the example above. Remember that you can refer to the current room as self inside the method.
+Check that your get_details() method works for any room object by calling it on the kitchen and ballroom as well.
+ 
+
+Solution discussion
+24 comments
+Take a look at my example solution for the game so far.
+You may have created your code in a slightly different way. Is the order of the objects the same, or have you included more or fewer rooms?
+What are the similarities or the differences? Leave your thoughts in the comments section.
+WATCH VIDEO MOVING BETWEEN ROOMS
+
+Moving between rooms
+8 comments
+Finally, you should add a method to allow the player to move between rooms.
+ 
+1.	Go to the room.py file.
+2.	Add a move method to your Room class.
+The move method should have a parameter for the direction in which the player would like to move. If the direction is one of the directions linked to, the method returns the room object that is in that direction. If there is no room in the dictionary in that direction, the method returns self; that is, the player is linked back to the room they were already in.
+def move(self, direction):
+    if direction in self.linked_rooms:
+        return self.linked_rooms[direction]
+    else:
+        print("You can't go that way")
+        return self
+3.	Go back to main.py and remove any code still left from your testing of the get_details() method.
+ballroom = Room("ballroom")
+ballroom.set_description("A vast room with a shiny wooden floor; huge candlesticks    guard the entrance")
+
+kitchen.link_room(dining_hall, "south")
+dining_hall.link_room(kitchen, "north")
+dining_hall.link_room(ballroom, "west")
+ballroom.link_room(dining_hall, "east")
+
+# any calls to get_details can now be removed
+kitchen.get_details() # remove
+dining_hall.get_details() # remove
+ballroom.get_details() # remove
+
+# Add your code here
+4.	Add some code at the bottom of the script to create a loop, letting the player move between rooms.
+current_room = kitchen          
+
+while True:		
+    print("\n")         
+    current_room.get_details()         
+    command = input("> ")    
+    current_room = current_room.move(command)  
+5.	Save and run your program.
+6.	Type in some directions (e.g. “south”) to move between rooms.
+Don’t forget to also try directions that won’t work, to see whether your game handles them correctly.
+
+Create an Item class
+25 comments
+You have successfully created a Room class, complete with a constructor, attributes, getters, and setters. Now you are going to create a class from scratch.
+You task is to create a class to represent an item you might find in the game, such as a sword. I will show you how to integrate the Item class into your game in week four.
+1.	Open a new Python file.
+2.	Save it as item.py in the same location as your main.py file.
+3.	Create an Item class.
+The Item class should have the following:
+•	Attributes for the name and the description of the item
+•	A constructor method
+•	Getters and setters for the name and the description of the item
+•	Any additional attributes and methods you would like to add
+Don’t forget to test your Item class by importing item in main.py, creating an Item object, and then calling the methods.
+You can see all of the code from week two, plus an example solution to this task, in this Trinket.
+Compare your solution to my example and use the comments section to discuss any similarities or differences.
+Question 4
+Why are getter and setter methods used?
+Including getters and setters in your class is good programming etiquette, because they are useful tools for ensuring that people are using your code in the way you expect, and for minimising the risk of unexpected errors.
+Well done for completing the second week of the course.
+This week you learnt:
+•	A class is like a blueprint for creating an object.
+•	To create an object using your class, you call a special method named the constructor. Instantiating an object of a class is a bit like saying, “Hey Python, you remember that blueprint I gave you? Well, I’d like you to use it to make an object.”
+•	You need your object to have attributes; these are pieces of data stored inside the object. Assigning an object’s attributes is a bit like taking several variables, each with its own name, and grouping them together with the object. Inside the constructor you define what attributes your object has and what their starting values will be. In your game so far, each room object has a name, a description, and a dictionary of the rooms linked to it.
+•	The object must also have methods — ways for you to tell it what to do. Imagine writing methods as taking several functions, each with its own name, and making them available for use on the object. So inside the class, you define various methods for interacting with the object. In your example, you defined some getters and setters, and also methods to move between rooms and print out the details of each room.
+•	Finally, each object you create is called an instance of its class, so each room object you made was an instance of Room.
+To summarise this week, you looked at writing your own class, instantiating objects of that class with custom attribute values, and you used the object’s methods to interact with it.
+Next week, you will look at using code from classes written by other people, and extending their code to modify objects for your own purpose. You will look at the concepts of inheritance and polymorphism and use them in the context of your text-based adventure game to create enemies for the player to encounter.
+Week two glossary
+Constructor: a special method to tell Python how to create an object of this class: in Python, the constructor method is always called __init__ with a double underscore on each side of ‘init’
+Dictionary: similar to a list, but allows you to give each element a name
+Element: one item in a dictionary
+Getter: a method whose purpose it is to get a value from within an object
+Instantiate: create an object of a particular class
+Parameter: a way of providing data so that it can be used within a method
+Self: used within the code for an object to mean ‘this object’
+Setter: a method whose purpose it is to set an attribute within an object
+This text/image/video was created by the Raspberry Pi Foundation and is licensed under the Open Government Licence v3.0..
+
+
