@@ -47,7 +47,7 @@ class Room():
         print(self.description)
         for direction in self.linked_rooms:
             room = self.linked_rooms[direction]
-            print( "The " + room.get_name() + " is " + direction)
+            print("The " + room.get_name() + " is " + direction)
 
     def move(self, direction):
         if direction in self.linked_rooms:
@@ -55,4 +55,3 @@ class Room():
         else:
             print("You can't go that way")
             return self
-

@@ -59,7 +59,7 @@ dead = False
 while dead == False:
     print("\n")
     current_room.get_details()
-    
+
     # Checks if there is an inhabitant in the current room
     inhabitant = current_room.get_character()
     if inhabitant is not None:
@@ -68,9 +68,9 @@ while dead == False:
     item = current_room.get_item()
     if item is not None:
         item.describe()
-         
+
     command = input("> ")
-    
+
     if command in ["north", "south", "east", "west"]:
         # Checks is command is a movement command
         current_room = current_room.move(command)
